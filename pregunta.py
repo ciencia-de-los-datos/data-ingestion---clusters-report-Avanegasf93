@@ -44,7 +44,8 @@ def ingest_data():
 
     dataset = dataset.groupby(['cluster','cantidad_de_palabras_clave','porcentaje_de_palabras_clave'], as_index=False)[['principales_palabras_clave']].sum()
 
-    dataset['principales_palabras_clave'].replace({", ": ", "}, regex=True, inplace=(True))
+    dataset['principales_palabras_clave'].replace({", ": ","}, regex=True, inplace=(True))
+    dataset['principales_palabras_clave'].replace({",": ", "}, regex=True, inplace=(True))
     dataset['principales_palabras_clave']=dataset['principales_palabras_clave'].str.strip()
     dataset["principales_palabras_clave"] = dataset["principales_palabras_clave"].str.rstrip('.')
 
