@@ -42,7 +42,7 @@ def ingest_data():
     dataset['cantidad_de_palabras_clave'] = dataset['cantidad_de_palabras_clave'].astype(int)
     dataset['porcentaje_de_palabras_clave'] = dataset['porcentaje_de_palabras_clave'].astype(float)
 
-    dataset = dataset.groupby(['cluster','cantidad_de_palabras_clave','porcentaje_de_palabras_clave'], as_index=False)[['principales_palabras_clave']].sum()
+    dataset = dataset.groupby(['cluster','cantidad_de_palabras_clave','porcentaje_de_palabras_clave'])['principales_palabras_clave'].apply(' '.join).reset_index()
 
     dataset['principales_palabras_clave'].replace({", ": ","}, regex=True, inplace=(True))
     dataset['principales_palabras_clave'].replace({",": ", "}, regex=True, inplace=(True))
