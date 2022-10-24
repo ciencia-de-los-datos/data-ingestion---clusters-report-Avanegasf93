@@ -18,10 +18,6 @@ def ingest_data():
     names = ['cluster', 'cantidad_de_palabras_clave', 'porcentaje_de_palabras_clave', 'principales_palabras_clave'], 
     na_filter = False)
 
-    dataset['principales_palabras_clave'].replace({"  ": " "}, regex=True, inplace=(True))
-    dataset['principales_palabras_clave'].replace({"   ": " "}, regex=True, inplace=(True))
-    dataset['principales_palabras_clave'].replace({"    ": " "}, regex=True, inplace=(True))
-    dataset['principales_palabras_clave'].replace({"     ": " "}, regex=True, inplace=(True))
 
     for indice, contenido in enumerate(dataset['cluster']):
         if contenido =='':
@@ -46,7 +42,11 @@ def ingest_data():
 
     dataset['principales_palabras_clave'].replace({", ": ","}, regex=True, inplace=(True))
     dataset['principales_palabras_clave'].replace({",": ", "}, regex=True, inplace=(True))
-    dataset['principales_palabras_clave']=dataset['principales_palabras_clave'].str.strip()
+    dataset['principales_palabras_clave'] = dataset['principales_palabras_clave'].str.strip()
     dataset["principales_palabras_clave"] = dataset["principales_palabras_clave"].str.rstrip('.')
+    dataset['principales_palabras_clave'].replace({"  ": " "}, regex=True, inplace=(True))
+    dataset['principales_palabras_clave'].replace({"   ": " "}, regex=True, inplace=(True))
+    dataset['principales_palabras_clave'].replace({"    ": " "}, regex=True, inplace=(True))
+    dataset['principales_palabras_clave'].replace({"     ": " "}, regex=True, inplace=(True))
 
     return dataset
